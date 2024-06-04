@@ -1,0 +1,973 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBCursoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ASIGnatura">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreAsignatura" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ASIStencia">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaAsistencia" Type="date" />
+          <Property Name="EstadoAsistencia" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CALIficacion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Calificacion" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FechaCalificacion" Type="date" />
+        </EntityType>
+        <EntityType Name="CURSo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="Duracion" Type="int" />
+          <Property Name="Nivel" Type="varchar" MaxLength="50" />
+          <Property Name="CodigoAsignatura" Type="int" />
+          <Property Name="CodigoHorario" Type="int" />
+          <Property Name="DocumentoProfesor" Type="varchar" MaxLength="20" />
+          <Property Name="DocumentoEstudiante" Type="varchar" MaxLength="20" />
+          <Property Name="CodigoAsistencia" Type="int" />
+          <Property Name="CodigoEvaluacion" Type="int" />
+          <Property Name="CodigoCalificacion" Type="int" />
+        </EntityType>
+        <EntityType Name="DETAlleFACTura">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumeroFactura" Type="int" Nullable="false" />
+          <Property Name="CodigoCurso" Type="int" Nullable="false" />
+          <Property Name="ValorUnitario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETAlleINSCripcion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoInscripcion" Type="int" Nullable="false" />
+          <Property Name="CodigoCurso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ESTUdiante">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="Correo" Type="varchar" MaxLength="200" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="EVALuacion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoEvaluacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaEvaluacion" Type="date" />
+          <Property Name="Ponderacion" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="FACTura">
+          <Key>
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HORArio">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoSesion" Type="int" />
+          <Property Name="DiaSemana" Type="varchar" MaxLength="20" />
+          <Property Name="HoraInicio" Type="time" Precision="7" />
+          <Property Name="HoraFin" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="INSCripcion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaInscripcion" Type="date" />
+        </EntityType>
+        <EntityType Name="MATErial">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreMaterial" Type="varchar" MaxLength="100" />
+          <Property Name="TipoMaterial" Type="varchar" MaxLength="50" />
+          <Property Name="EnlaceDescarga" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DBCurso.dbo.MATErialASIGnatura' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="MATErialASIGnatura">
+          <Property Name="CodigoMaterial" Type="int" />
+          <Property Name="CodigoAsignatura" Type="int" />
+        </EntityType>-->
+        <EntityType Name="PROFesor">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="50" />
+          <Property Name="Correo" Type="varchar" MaxLength="200" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="SESIon">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaInicio" Type="datetime" />
+          <Property Name="FechaFin" Type="datetime" />
+          <Property Name="Enlace" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TEMA">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreTema" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DBCurso.dbo.TEMAASIGnatura' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TEMAASIGnatura">
+          <Property Name="CodigoTema" Type="int" />
+          <Property Name="CodigoAsignatura" Type="int" />
+        </EntityType>-->
+        <Association Name="FK__CURSo__CodigoAsi__534D60F1">
+          <End Role="ASIGnatura" Type="Self.ASIGnatura" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGnatura">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoAsignatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__CodigoAsi__571DF1D5">
+          <End Role="ASIStencia" Type="Self.ASIStencia" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIStencia">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoAsistencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__CodigoCal__59063A47">
+          <End Role="CALIficacion" Type="Self.CALIficacion" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CALIficacion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__CodigoEva__5812160E">
+          <End Role="EVALuacion" Type="Self.EVALuacion" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVALuacion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoEvaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__CodigoHor__5441852A">
+          <End Role="HORArio" Type="Self.HORArio" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HORArio">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoHorario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__Documento__5535A963">
+          <End Role="PROFesor" Type="Self.PROFesor" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFesor">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="DocumentoProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__Documento__5629CD9C">
+          <End Role="ESTUdiante" Type="Self.ESTUdiante" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTUdiante">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="DocumentoEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETAlleFA__Codig__5CD6CB2B">
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="1" />
+          <End Role="DETAlleFACTura" Type="Self.DETAlleFACTura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CURSo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DETAlleFACTura">
+              <PropertyRef Name="CodigoCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETAlleFA__Numer__5BE2A6F2">
+          <End Role="FACTura" Type="Self.FACTura" Multiplicity="1" />
+          <End Role="DETAlleFACTura" Type="Self.DETAlleFACTura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTura">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="DETAlleFACTura">
+              <PropertyRef Name="NumeroFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETAlleIN__Codig__619B8048">
+          <End Role="INSCripcion" Type="Self.INSCripcion" Multiplicity="1" />
+          <End Role="DETAlleINSCripcion" Type="Self.DETAlleINSCripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSCripcion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DETAlleINSCripcion">
+              <PropertyRef Name="CodigoInscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETAlleIN__Codig__628FA481">
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="1" />
+          <End Role="DETAlleINSCripcion" Type="Self.DETAlleINSCripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CURSo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DETAlleINSCripcion">
+              <PropertyRef Name="CodigoCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HORArio__CodigoS__4316F928">
+          <End Role="SESIon" Type="Self.SESIon" Multiplicity="0..1" />
+          <End Role="HORArio" Type="Self.HORArio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SESIon">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="HORArio">
+              <PropertyRef Name="CodigoSesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'DBCurso.dbo.MATErialASIGnatura' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__MATErialA__Codig__48CFD27E" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'DBCurso.dbo.MATErialASIGnatura' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__MATErialA__Codig__49C3F6B7" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'DBCurso.dbo.TEMAASIGnatura' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__TEMAASIGn__Codig__4D94879B" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'DBCurso.dbo.TEMAASIGnatura' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__TEMAASIGn__Codig__4E88ABD4" />-->
+        <EntityContainer Name="DBCursoModelStoreContainer">
+          <EntitySet Name="ASIGnatura" EntityType="Self.ASIGnatura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ASIStencia" EntityType="Self.ASIStencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CALIficacion" EntityType="Self.CALIficacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CURSo" EntityType="Self.CURSo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETAlleFACTura" EntityType="Self.DETAlleFACTura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETAlleINSCripcion" EntityType="Self.DETAlleINSCripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESTUdiante" EntityType="Self.ESTUdiante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EVALuacion" EntityType="Self.EVALuacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTura" EntityType="Self.FACTura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HORArio" EntityType="Self.HORArio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INSCripcion" EntityType="Self.INSCripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MATErial" EntityType="Self.MATErial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFesor" EntityType="Self.PROFesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SESIon" EntityType="Self.SESIon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEMA" EntityType="Self.TEMA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CURSo__CodigoAsi__534D60F1" Association="Self.FK__CURSo__CodigoAsi__534D60F1">
+            <End Role="ASIGnatura" EntitySet="ASIGnatura" />
+            <End Role="CURSo" EntitySet="CURSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__CodigoAsi__571DF1D5" Association="Self.FK__CURSo__CodigoAsi__571DF1D5">
+            <End Role="ASIStencia" EntitySet="ASIStencia" />
+            <End Role="CURSo" EntitySet="CURSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__CodigoCal__59063A47" Association="Self.FK__CURSo__CodigoCal__59063A47">
+            <End Role="CALIficacion" EntitySet="CALIficacion" />
+            <End Role="CURSo" EntitySet="CURSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__CodigoEva__5812160E" Association="Self.FK__CURSo__CodigoEva__5812160E">
+            <End Role="EVALuacion" EntitySet="EVALuacion" />
+            <End Role="CURSo" EntitySet="CURSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__CodigoHor__5441852A" Association="Self.FK__CURSo__CodigoHor__5441852A">
+            <End Role="HORArio" EntitySet="HORArio" />
+            <End Role="CURSo" EntitySet="CURSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__Documento__5535A963" Association="Self.FK__CURSo__Documento__5535A963">
+            <End Role="PROFesor" EntitySet="PROFesor" />
+            <End Role="CURSo" EntitySet="CURSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__Documento__5629CD9C" Association="Self.FK__CURSo__Documento__5629CD9C">
+            <End Role="ESTUdiante" EntitySet="ESTUdiante" />
+            <End Role="CURSo" EntitySet="CURSo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAlleFA__Codig__5CD6CB2B" Association="Self.FK__DETAlleFA__Codig__5CD6CB2B">
+            <End Role="CURSo" EntitySet="CURSo" />
+            <End Role="DETAlleFACTura" EntitySet="DETAlleFACTura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAlleFA__Numer__5BE2A6F2" Association="Self.FK__DETAlleFA__Numer__5BE2A6F2">
+            <End Role="FACTura" EntitySet="FACTura" />
+            <End Role="DETAlleFACTura" EntitySet="DETAlleFACTura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAlleIN__Codig__619B8048" Association="Self.FK__DETAlleIN__Codig__619B8048">
+            <End Role="INSCripcion" EntitySet="INSCripcion" />
+            <End Role="DETAlleINSCripcion" EntitySet="DETAlleINSCripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAlleIN__Codig__628FA481" Association="Self.FK__DETAlleIN__Codig__628FA481">
+            <End Role="CURSo" EntitySet="CURSo" />
+            <End Role="DETAlleINSCripcion" EntitySet="DETAlleINSCripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HORArio__CodigoS__4316F928" Association="Self.FK__HORArio__CodigoS__4316F928">
+            <End Role="SESIon" EntitySet="SESIon" />
+            <End Role="HORArio" EntitySet="HORArio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBCursoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ASIGnatura">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreAsignatura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CURSoes" Relationship="Self.FK__CURSo__CodigoAsi__534D60F1" FromRole="ASIGnatura" ToRole="CURSo" />
+        </EntityType>
+        <EntityType Name="ASIStencia">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaAsistencia" Type="DateTime" Precision="0" />
+          <Property Name="EstadoAsistencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CURSoes" Relationship="Self.FK__CURSo__CodigoAsi__571DF1D5" FromRole="ASIStencia" ToRole="CURSo" />
+        </EntityType>
+        <EntityType Name="CALIficacion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Calificacion1" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FechaCalificacion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CURSoes" Relationship="Self.FK__CURSo__CodigoCal__59063A47" FromRole="CALIficacion" ToRole="CURSo" />
+        </EntityType>
+        <EntityType Name="CURSo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Duracion" Type="Int32" />
+          <Property Name="Nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoAsignatura" Type="Int32" />
+          <Property Name="CodigoHorario" Type="Int32" />
+          <Property Name="DocumentoProfesor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentoEstudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoAsistencia" Type="Int32" />
+          <Property Name="CodigoEvaluacion" Type="Int32" />
+          <Property Name="CodigoCalificacion" Type="Int32" />
+          <NavigationProperty Name="ASIGnatura" Relationship="Self.FK__CURSo__CodigoAsi__534D60F1" FromRole="CURSo" ToRole="ASIGnatura" />
+          <NavigationProperty Name="ASIStencia" Relationship="Self.FK__CURSo__CodigoAsi__571DF1D5" FromRole="CURSo" ToRole="ASIStencia" />
+          <NavigationProperty Name="CALIficacion" Relationship="Self.FK__CURSo__CodigoCal__59063A47" FromRole="CURSo" ToRole="CALIficacion" />
+          <NavigationProperty Name="EVALuacion" Relationship="Self.FK__CURSo__CodigoEva__5812160E" FromRole="CURSo" ToRole="EVALuacion" />
+          <NavigationProperty Name="HORArio" Relationship="Self.FK__CURSo__CodigoHor__5441852A" FromRole="CURSo" ToRole="HORArio" />
+          <NavigationProperty Name="PROFesor" Relationship="Self.FK__CURSo__Documento__5535A963" FromRole="CURSo" ToRole="PROFesor" />
+          <NavigationProperty Name="ESTUdiante" Relationship="Self.FK__CURSo__Documento__5629CD9C" FromRole="CURSo" ToRole="ESTUdiante" />
+          <NavigationProperty Name="DETAlleFACTuras" Relationship="Self.FK__DETAlleFA__Codig__5CD6CB2B" FromRole="CURSo" ToRole="DETAlleFACTura" />
+          <NavigationProperty Name="DETAlleINSCripcions" Relationship="Self.FK__DETAlleIN__Codig__628FA481" FromRole="CURSo" ToRole="DETAlleINSCripcion" />
+        </EntityType>
+        <EntityType Name="DETAlleFACTura">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroFactura" Type="Int32" Nullable="false" />
+          <Property Name="CodigoCurso" Type="Int32" Nullable="false" />
+          <Property Name="ValorUnitario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CURSo" Relationship="Self.FK__DETAlleFA__Codig__5CD6CB2B" FromRole="DETAlleFACTura" ToRole="CURSo" />
+          <NavigationProperty Name="FACTura" Relationship="Self.FK__DETAlleFA__Numer__5BE2A6F2" FromRole="DETAlleFACTura" ToRole="FACTura" />
+        </EntityType>
+        <EntityType Name="DETAlleINSCripcion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoInscripcion" Type="Int32" Nullable="false" />
+          <Property Name="CodigoCurso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CURSo" Relationship="Self.FK__DETAlleIN__Codig__628FA481" FromRole="DETAlleINSCripcion" ToRole="CURSo" />
+          <NavigationProperty Name="INSCripcion" Relationship="Self.FK__DETAlleIN__Codig__619B8048" FromRole="DETAlleINSCripcion" ToRole="INSCripcion" />
+        </EntityType>
+        <EntityType Name="ESTUdiante">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CURSoes" Relationship="Self.FK__CURSo__Documento__5629CD9C" FromRole="ESTUdiante" ToRole="CURSo" />
+        </EntityType>
+        <EntityType Name="EVALuacion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoEvaluacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEvaluacion" Type="DateTime" Precision="0" />
+          <Property Name="Ponderacion" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="CURSoes" Relationship="Self.FK__CURSo__CodigoEva__5812160E" FromRole="EVALuacion" ToRole="CURSo" />
+        </EntityType>
+        <EntityType Name="FACTura">
+          <Key>
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DETAlleFACTuras" Relationship="Self.FK__DETAlleFA__Numer__5BE2A6F2" FromRole="FACTura" ToRole="DETAlleFACTura" />
+        </EntityType>
+        <EntityType Name="HORArio">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoSesion" Type="Int32" />
+          <Property Name="DiaSemana" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HoraInicio" Type="Time" Precision="7" />
+          <Property Name="HoraFin" Type="Time" Precision="7" />
+          <NavigationProperty Name="CURSoes" Relationship="Self.FK__CURSo__CodigoHor__5441852A" FromRole="HORArio" ToRole="CURSo" />
+          <NavigationProperty Name="SESIon" Relationship="Self.FK__HORArio__CodigoS__4316F928" FromRole="HORArio" ToRole="SESIon" />
+        </EntityType>
+        <EntityType Name="INSCripcion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaInscripcion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DETAlleINSCripcions" Relationship="Self.FK__DETAlleIN__Codig__619B8048" FromRole="INSCripcion" ToRole="DETAlleINSCripcion" />
+        </EntityType>
+        <EntityType Name="MATErial">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreMaterial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TipoMaterial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EnlaceDescarga" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PROFesor">
+          <Key>
+            <PropertyRef Name="Documento" />
+          </Key>
+          <Property Name="Documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CURSoes" Relationship="Self.FK__CURSo__Documento__5535A963" FromRole="PROFesor" ToRole="CURSo" />
+        </EntityType>
+        <EntityType Name="SESIon">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaFin" Type="DateTime" Precision="3" />
+          <Property Name="Enlace" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HORArios" Relationship="Self.FK__HORArio__CodigoS__4316F928" FromRole="SESIon" ToRole="HORArio" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TEMA">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreTema" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__CURSo__CodigoAsi__534D60F1">
+          <End Role="ASIGnatura" Type="Self.ASIGnatura" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIGnatura">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoAsignatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__CodigoAsi__571DF1D5">
+          <End Role="ASIStencia" Type="Self.ASIStencia" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ASIStencia">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoAsistencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__CodigoCal__59063A47">
+          <End Role="CALIficacion" Type="Self.CALIficacion" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CALIficacion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoCalificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__CodigoEva__5812160E">
+          <End Role="EVALuacion" Type="Self.EVALuacion" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVALuacion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoEvaluacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__CodigoHor__5441852A">
+          <End Role="HORArio" Type="Self.HORArio" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HORArio">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="CodigoHorario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__Documento__5535A963">
+          <End Role="PROFesor" Type="Self.PROFesor" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFesor">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="DocumentoProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CURSo__Documento__5629CD9C">
+          <End Role="ESTUdiante" Type="Self.ESTUdiante" Multiplicity="0..1" />
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTUdiante">
+              <PropertyRef Name="Documento" />
+            </Principal>
+            <Dependent Role="CURSo">
+              <PropertyRef Name="DocumentoEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETAlleFA__Codig__5CD6CB2B">
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="1" />
+          <End Role="DETAlleFACTura" Type="Self.DETAlleFACTura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CURSo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DETAlleFACTura">
+              <PropertyRef Name="CodigoCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETAlleIN__Codig__628FA481">
+          <End Role="CURSo" Type="Self.CURSo" Multiplicity="1" />
+          <End Role="DETAlleINSCripcion" Type="Self.DETAlleINSCripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CURSo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DETAlleINSCripcion">
+              <PropertyRef Name="CodigoCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETAlleFA__Numer__5BE2A6F2">
+          <End Role="FACTura" Type="Self.FACTura" Multiplicity="1" />
+          <End Role="DETAlleFACTura" Type="Self.DETAlleFACTura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTura">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="DETAlleFACTura">
+              <PropertyRef Name="NumeroFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DETAlleIN__Codig__619B8048">
+          <End Role="INSCripcion" Type="Self.INSCripcion" Multiplicity="1" />
+          <End Role="DETAlleINSCripcion" Type="Self.DETAlleINSCripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSCripcion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DETAlleINSCripcion">
+              <PropertyRef Name="CodigoInscripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HORArio__CodigoS__4316F928">
+          <End Role="SESIon" Type="Self.SESIon" Multiplicity="0..1" />
+          <End Role="HORArio" Type="Self.HORArio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SESIon">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="HORArio">
+              <PropertyRef Name="CodigoSesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBCursoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ASIGnaturas" EntityType="Self.ASIGnatura" />
+          <EntitySet Name="ASIStencias" EntityType="Self.ASIStencia" />
+          <EntitySet Name="CALIficacions" EntityType="Self.CALIficacion" />
+          <EntitySet Name="CURSoes" EntityType="Self.CURSo" />
+          <EntitySet Name="DETAlleFACTuras" EntityType="Self.DETAlleFACTura" />
+          <EntitySet Name="DETAlleINSCripcions" EntityType="Self.DETAlleINSCripcion" />
+          <EntitySet Name="ESTUdiantes" EntityType="Self.ESTUdiante" />
+          <EntitySet Name="EVALuacions" EntityType="Self.EVALuacion" />
+          <EntitySet Name="FACTuras" EntityType="Self.FACTura" />
+          <EntitySet Name="HORArios" EntityType="Self.HORArio" />
+          <EntitySet Name="INSCripcions" EntityType="Self.INSCripcion" />
+          <EntitySet Name="MATErials" EntityType="Self.MATErial" />
+          <EntitySet Name="PROFesors" EntityType="Self.PROFesor" />
+          <EntitySet Name="SESIons" EntityType="Self.SESIon" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TEMAs" EntityType="Self.TEMA" />
+          <AssociationSet Name="FK__CURSo__CodigoAsi__534D60F1" Association="Self.FK__CURSo__CodigoAsi__534D60F1">
+            <End Role="ASIGnatura" EntitySet="ASIGnaturas" />
+            <End Role="CURSo" EntitySet="CURSoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__CodigoAsi__571DF1D5" Association="Self.FK__CURSo__CodigoAsi__571DF1D5">
+            <End Role="ASIStencia" EntitySet="ASIStencias" />
+            <End Role="CURSo" EntitySet="CURSoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__CodigoCal__59063A47" Association="Self.FK__CURSo__CodigoCal__59063A47">
+            <End Role="CALIficacion" EntitySet="CALIficacions" />
+            <End Role="CURSo" EntitySet="CURSoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__CodigoEva__5812160E" Association="Self.FK__CURSo__CodigoEva__5812160E">
+            <End Role="EVALuacion" EntitySet="EVALuacions" />
+            <End Role="CURSo" EntitySet="CURSoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__CodigoHor__5441852A" Association="Self.FK__CURSo__CodigoHor__5441852A">
+            <End Role="HORArio" EntitySet="HORArios" />
+            <End Role="CURSo" EntitySet="CURSoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__Documento__5535A963" Association="Self.FK__CURSo__Documento__5535A963">
+            <End Role="PROFesor" EntitySet="PROFesors" />
+            <End Role="CURSo" EntitySet="CURSoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CURSo__Documento__5629CD9C" Association="Self.FK__CURSo__Documento__5629CD9C">
+            <End Role="ESTUdiante" EntitySet="ESTUdiantes" />
+            <End Role="CURSo" EntitySet="CURSoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAlleFA__Codig__5CD6CB2B" Association="Self.FK__DETAlleFA__Codig__5CD6CB2B">
+            <End Role="CURSo" EntitySet="CURSoes" />
+            <End Role="DETAlleFACTura" EntitySet="DETAlleFACTuras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAlleIN__Codig__628FA481" Association="Self.FK__DETAlleIN__Codig__628FA481">
+            <End Role="CURSo" EntitySet="CURSoes" />
+            <End Role="DETAlleINSCripcion" EntitySet="DETAlleINSCripcions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAlleFA__Numer__5BE2A6F2" Association="Self.FK__DETAlleFA__Numer__5BE2A6F2">
+            <End Role="FACTura" EntitySet="FACTuras" />
+            <End Role="DETAlleFACTura" EntitySet="DETAlleFACTuras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAlleIN__Codig__619B8048" Association="Self.FK__DETAlleIN__Codig__619B8048">
+            <End Role="INSCripcion" EntitySet="INSCripcions" />
+            <End Role="DETAlleINSCripcion" EntitySet="DETAlleINSCripcions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HORArio__CodigoS__4316F928" Association="Self.FK__HORArio__CodigoS__4316F928">
+            <End Role="SESIon" EntitySet="SESIons" />
+            <End Role="HORArio" EntitySet="HORArios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBCursoModelStoreContainer" CdmEntityContainer="DBCursoEntities">
+          <EntitySetMapping Name="ASIGnaturas">
+            <EntityTypeMapping TypeName="DBCursoModel.ASIGnatura">
+              <MappingFragment StoreEntitySet="ASIGnatura">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NombreAsignatura" ColumnName="NombreAsignatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASIStencias">
+            <EntityTypeMapping TypeName="DBCursoModel.ASIStencia">
+              <MappingFragment StoreEntitySet="ASIStencia">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FechaAsistencia" ColumnName="FechaAsistencia" />
+                <ScalarProperty Name="EstadoAsistencia" ColumnName="EstadoAsistencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CALIficacions">
+            <EntityTypeMapping TypeName="DBCursoModel.CALIficacion">
+              <MappingFragment StoreEntitySet="CALIficacion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Calificacion1" ColumnName="Calificacion" />
+                <ScalarProperty Name="FechaCalificacion" ColumnName="FechaCalificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CURSoes">
+            <EntityTypeMapping TypeName="DBCursoModel.CURSo">
+              <MappingFragment StoreEntitySet="CURSo">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="CodigoAsignatura" ColumnName="CodigoAsignatura" />
+                <ScalarProperty Name="CodigoHorario" ColumnName="CodigoHorario" />
+                <ScalarProperty Name="DocumentoProfesor" ColumnName="DocumentoProfesor" />
+                <ScalarProperty Name="DocumentoEstudiante" ColumnName="DocumentoEstudiante" />
+                <ScalarProperty Name="CodigoAsistencia" ColumnName="CodigoAsistencia" />
+                <ScalarProperty Name="CodigoEvaluacion" ColumnName="CodigoEvaluacion" />
+                <ScalarProperty Name="CodigoCalificacion" ColumnName="CodigoCalificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETAlleFACTuras">
+            <EntityTypeMapping TypeName="DBCursoModel.DETAlleFACTura">
+              <MappingFragment StoreEntitySet="DETAlleFACTura">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NumeroFactura" ColumnName="NumeroFactura" />
+                <ScalarProperty Name="CodigoCurso" ColumnName="CodigoCurso" />
+                <ScalarProperty Name="ValorUnitario" ColumnName="ValorUnitario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETAlleINSCripcions">
+            <EntityTypeMapping TypeName="DBCursoModel.DETAlleINSCripcion">
+              <MappingFragment StoreEntitySet="DETAlleINSCripcion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="CodigoInscripcion" ColumnName="CodigoInscripcion" />
+                <ScalarProperty Name="CodigoCurso" ColumnName="CodigoCurso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTUdiantes">
+            <EntityTypeMapping TypeName="DBCursoModel.ESTUdiante">
+              <MappingFragment StoreEntitySet="ESTUdiante">
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVALuacions">
+            <EntityTypeMapping TypeName="DBCursoModel.EVALuacion">
+              <MappingFragment StoreEntitySet="EVALuacion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="TipoEvaluacion" ColumnName="TipoEvaluacion" />
+                <ScalarProperty Name="FechaEvaluacion" ColumnName="FechaEvaluacion" />
+                <ScalarProperty Name="Ponderacion" ColumnName="Ponderacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTuras">
+            <EntityTypeMapping TypeName="DBCursoModel.FACTura">
+              <MappingFragment StoreEntitySet="FACTura">
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HORArios">
+            <EntityTypeMapping TypeName="DBCursoModel.HORArio">
+              <MappingFragment StoreEntitySet="HORArio">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="CodigoSesion" ColumnName="CodigoSesion" />
+                <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INSCripcions">
+            <EntityTypeMapping TypeName="DBCursoModel.INSCripcion">
+              <MappingFragment StoreEntitySet="INSCripcion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FechaInscripcion" ColumnName="FechaInscripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MATErials">
+            <EntityTypeMapping TypeName="DBCursoModel.MATErial">
+              <MappingFragment StoreEntitySet="MATErial">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="TipoMaterial" ColumnName="TipoMaterial" />
+                <ScalarProperty Name="EnlaceDescarga" ColumnName="EnlaceDescarga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFesors">
+            <EntityTypeMapping TypeName="DBCursoModel.PROFesor">
+              <MappingFragment StoreEntitySet="PROFesor">
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SESIons">
+            <EntityTypeMapping TypeName="DBCursoModel.SESIon">
+              <MappingFragment StoreEntitySet="SESIon">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="Enlace" ColumnName="Enlace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBCursoModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEMAs">
+            <EntityTypeMapping TypeName="DBCursoModel.TEMA">
+              <MappingFragment StoreEntitySet="TEMA">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="NombreTema" ColumnName="NombreTema" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

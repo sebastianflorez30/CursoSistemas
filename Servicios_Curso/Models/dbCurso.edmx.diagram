@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1a2088e8c03a40a7892d0c9f3be18ded" Name="Diagram1">
+        <EntityTypeShape EntityType="DBCursoModel.ASIGnatura" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.ASIStencia" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.CALIficacion" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.CURSo" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.DETAlleFACTura" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.DETAlleINSCripcion" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.ESTUdiante" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.EVALuacion" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.FACTura" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.HORArio" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.INSCripcion" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.MATErial" Width="1.5" PointX="7.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.PROFesor" Width="1.5" PointX="3" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.SESIon" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.sysdiagram" Width="1.5" PointX="7.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBCursoModel.TEMA" Width="1.5" PointX="9.75" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="DBCursoModel.FK__CURSo__CodigoAsi__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__CURSo__CodigoAsi__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__CURSo__CodigoCal__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__CURSo__CodigoEva__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__CURSo__CodigoHor__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__CURSo__Documento__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__CURSo__Documento__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__DETAlleFA__Codig__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__DETAlleIN__Codig__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__DETAlleFA__Numer__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__DETAlleIN__Codig__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="DBCursoModel.FK__HORArio__CodigoS__4316F928" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
