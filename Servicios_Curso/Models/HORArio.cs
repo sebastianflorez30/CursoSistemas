@@ -9,6 +9,7 @@
 
 namespace Servicios_Curso.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -25,9 +26,10 @@ namespace Servicios_Curso.Models
         public string DiaSemana { get; set; }
         public Nullable<System.TimeSpan> HoraInicio { get; set; }
         public Nullable<System.TimeSpan> HoraFin { get; set; }
-    
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CURSo> CURSoes { get; set; }
+        [JsonIgnore]
         public virtual SESIon SESIon { get; set; }
     }
 }
