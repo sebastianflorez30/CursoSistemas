@@ -185,12 +185,14 @@
     <Compile Include="Clases\clsCurso.cs" />
     <Compile Include="Clases\clsEstudiante.cs" />
     <Compile Include="Clases\clsHorario.cs" />
+    <Compile Include="Clases\clsProfesor.cs" />
     <Compile Include="Clases\clsSesion.cs" />
     <Compile Include="Controllers\AsignaturasController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\EstudiantesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorariosController.cs" />
+    <Compile Include="Controllers\ProfesoresController.cs" />
     <Compile Include="Controllers\SesionesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

@@ -72,7 +72,7 @@ namespace Servicios_Curso.Clases
             //a la consulta, es el equivalente al WHERE
             //La variable "e =>", con la expresión =>, se convierte en una expresión lambda, que permite que esa variable
             //se vuelva un objeto de tipo empleado
-            return dbCurso.CURSoes.FirstOrDefault(e => e.Codigo == Codigo);
+            return dbCurso.CURSoes.FirstOrDefault(c => c.Codigo == Codigo);
         }
         //Si quiero consultar todos los empleados, no les pongo ningún criterio, y retorno una lista de empleados
         public List<CURSo> ConsultarTodos()

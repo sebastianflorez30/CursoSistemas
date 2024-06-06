@@ -13,13 +13,13 @@ namespace Servicios_Curso.Controllers
     [EnableCors(origins: "http://localhost:50247", headers: "*", methods: "*")]
     public class CursosController : ApiController
     {
-        // GET api/<controller>
+        /*// GET api/<controller>
         public List<CURSo> Get()
         {
             clsCurso _curso = new clsCurso();
             return _curso.ConsultarTodos();
         }
-
+        */
         // GET api/<controller>/5
         public CURSo Get(int Codigo)
         {
