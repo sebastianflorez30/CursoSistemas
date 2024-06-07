@@ -74,6 +74,24 @@ namespace Servicios_Curso.Clases
             //se vuelva un objeto de tipo empleado
             return dbCurso.CURSoes.FirstOrDefault(c => c.Codigo == Codigo);
         }
+        public IQueryable ListarTodosConProfesor()
+        {
+            return from PR in Curso.Set<PROFesor>()
+                   join C in Curso.Set<CURSo>()
+                   on PR.Documento equals C.DocumentoProfesor
+                   orderby PR.Nombre, C.Nombre
+                   select new
+                   {
+                       Cod_Tipo_Prod = TP.Codigo,
+                       Tipo_Producto = TP.Nombre,
+                       Codigo = P.Codigo,
+                       Producto = P.Nombre,
+                       Descripcion = P.Descripcion,
+                       Cantidad = P.Cantidad,
+                       Valor_Unitario = P.ValorUnitario
+                   };
+        }
+
         //Si quiero consultar todos los empleados, no les pongo ningún criterio, y retorno una lista de empleados
         public List<CURSo> ConsultarTodos()
         {
