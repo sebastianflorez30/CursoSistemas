@@ -9,6 +9,7 @@
 
 namespace Servicios_Curso.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -18,8 +19,9 @@ namespace Servicios_Curso.Models
         public int NumeroFactura { get; set; }
         public int CodigoCurso { get; set; }
         public int ValorUnitario { get; set; }
-    
+        [JsonIgnore]
         public virtual CURSo CURSo { get; set; }
+        [JsonIgnore]
         public virtual FACTura FACTura { get; set; }
     }
 }

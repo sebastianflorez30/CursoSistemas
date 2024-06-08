@@ -15,10 +15,17 @@ namespace Servicios_Curso.Controllers
     public class AsignaturasController : ApiController
     {
         // GET api/<controller>
+        /*
         public List<ASIGnatura> Get()
         {
             clsAsignatura _asignatura = new clsAsignatura();
             return _asignatura.ConsultarTodos();
+        }*/
+
+        public IQueryable Get()
+        {
+            clsAsignatura _asignatura = new clsAsignatura();
+            return _asignatura.ListarAsignaturas();            
         }
 
         // GET api/<controller>/5

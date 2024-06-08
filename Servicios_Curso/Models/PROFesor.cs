@@ -9,6 +9,7 @@
 
 namespace Servicios_Curso.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -26,7 +27,8 @@ namespace Servicios_Curso.Models
         public string SegundoApellido { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
-    
+        [JsonIgnore]
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CURSo> CURSoes { get; set; }
     }

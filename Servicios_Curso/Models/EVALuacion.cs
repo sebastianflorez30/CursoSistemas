@@ -9,6 +9,7 @@
 
 namespace Servicios_Curso.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -24,7 +25,8 @@ namespace Servicios_Curso.Models
         public string TipoEvaluacion { get; set; }
         public Nullable<System.DateTime> FechaEvaluacion { get; set; }
         public Nullable<decimal> Ponderacion { get; set; }
-    
+        [JsonIgnore]
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CURSo> CURSoes { get; set; }
     }

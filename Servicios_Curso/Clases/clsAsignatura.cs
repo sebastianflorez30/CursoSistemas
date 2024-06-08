@@ -29,6 +29,17 @@ namespace Servicios_Curso.Clases
             }
         }
 
+        public IQueryable ListarAsignaturas()
+        {
+            return from A in Curso.Set<ASIGnatura>()
+                   orderby A.NombreAsignatura
+                   select new
+                   {
+                       Codigo = A.Codigo,
+                       Nombre = A.NombreAsignatura                       
+                   };
+        }
+
         public string Actualizar()
         {
             try

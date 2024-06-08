@@ -63,6 +63,8 @@ namespace Servicios_Curso.Clases
                    on P.Documento equals C.DocumentoProfesor
                    join A in dbCurso.Set<ASIGnatura>()
                    on C.CodigoAsignatura equals A.Codigo
+                   join E in dbCurso.Set<ESTUdiante>()
+                   on C.DocumentoEstudiante equals E.Documento
                    orderby P.Nombre, C.Nombre, A.NombreAsignatura
                    select new
                    {
@@ -72,7 +74,8 @@ namespace Servicios_Curso.Clases
                        Duracion = C.Duracion,
                        Nivel = C.Nivel,
                        CodigoAsignatura = A.Codigo,
-                       DocumentoProfesor = P.Documento
+                       DocumentoProfesor = P.Documento,
+                       DocumentoEstudiante = E.Documento
                    };
         }
 

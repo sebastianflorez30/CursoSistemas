@@ -42,7 +42,11 @@ namespace Servicios_Curso.Clases
                    select new
                    {
                        Codigo = E.Documento,
-                       Nombre = E.Nombre + " " + E.PrimerApellido + " " + E.SegundoApellido
+                       Nombre = E.Nombre,
+                       PrimerApellido = E.PrimerApellido,
+                       SegundoApellido = E.SegundoApellido,
+                       Correo = E.Correo,
+                       Telefono = E.Telefono
                    };
         }
 

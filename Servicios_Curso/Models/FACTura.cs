@@ -9,6 +9,7 @@
 
 namespace Servicios_Curso.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -23,7 +24,8 @@ namespace Servicios_Curso.Models
         public int Numero { get; set; }
         public string Documento { get; set; }
         public System.DateTime Fecha { get; set; }
-    
+        [JsonIgnore]
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DETAlleFACTura> DETAlleFACTuras { get; set; }
     }
