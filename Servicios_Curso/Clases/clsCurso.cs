@@ -58,21 +58,21 @@ namespace Servicios_Curso.Clases
         }
         public IQueryable ListarTodosConProfesor()
         {
-            return from PR in dbCurso.Set<PROFesor>()
+            return from P in dbCurso.Set<PROFesor>()
                    join C in dbCurso.Set<CURSo>()               
-                   on PR.Documento equals C.DocumentoProfesor
+                   on P.Documento equals C.DocumentoProfesor
                    join A in dbCurso.Set<ASIGnatura>()
-                   on C.Codigo equals A.Codigo
-                   orderby PR.Nombre, C.Nombre
+                   on C.CodigoAsignatura equals A.Codigo
+                   orderby P.Nombre, C.Nombre, A.NombreAsignatura
                    select new
                    {
-                       CodigoCurso = C.Codigo,
-                       NombreCurso = C.Nombre,
+                       Codigo = C.Codigo,
+                       Nombre = C.Nombre,
                        Descripcion = C.Descripcion,
                        Duracion = C.Duracion,
                        Nivel = C.Nivel,
                        CodigoAsignatura = A.Codigo,
-                       DocumentoProfesor = PR.Documento
+                       DocumentoProfesor = P.Documento
                    };
         }
 

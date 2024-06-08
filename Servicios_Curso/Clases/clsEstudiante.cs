@@ -35,6 +35,16 @@ namespace Servicios_Curso.Clases
                 return ex.Message;
             }
         }
+        public IQueryable ListarEstudiantes()
+        {
+            return from E in Curso.Set<ESTUdiante>()
+                   orderby E.PrimerApellido, E.SegundoApellido
+                   select new
+                   {
+                       Codigo = E.Documento,
+                       Nombre = E.Nombre + " " + E.PrimerApellido + " " + E.SegundoApellido
+                   };
+        }
 
         public string Actualizar()
         {
@@ -82,7 +92,7 @@ namespace Servicios_Curso.Clases
             //se vuelva un objeto de tipo empleado
             return Curso.ESTUdiantes.FirstOrDefault(e => e.Documento == Documento);
         }
-        //Si quiero consultar todos los empleados, no les pongo ningún criterio, y retorno una lista de empleados
+        //Si quiero consultar todos los empleados, no les pongo ningún criterio, y retorno una lista de empleados               
         public List<ESTUdiante> ConsultarTodos()
         {
             //Para consultar un grupo de empleados, o de objetos de la base de datos, se debe retornar una lista

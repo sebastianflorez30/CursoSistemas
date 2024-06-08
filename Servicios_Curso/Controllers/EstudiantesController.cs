@@ -20,10 +20,10 @@ namespace Servicios_Curso.Controllers
             return _estudiante.ConsultarTodos();
         }*/
 
-        public List<ESTUdiante> Get()
+        public IQueryable Get()
         {
             clsEstudiante _estudiante = new clsEstudiante();
-            return _estudiante.ConsultarEstudiantes();
+            return _estudiante.ListarEstudiantes();
         }
 
         // GET api/<controller>/5
