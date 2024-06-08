@@ -14,10 +14,16 @@ namespace Servicios_Curso.Controllers
     public class EstudiantesController : ApiController
     {
         // GET api/<controller>
-        public List<ESTUdiante> Get()
+       /* public List<ESTUdiante> Get()
         {
             clsEstudiante _estudiante = new clsEstudiante();
             return _estudiante.ConsultarTodos();
+        }*/
+
+        public List<ESTUdiante> Get()
+        {
+            clsEstudiante _estudiante = new clsEstudiante();
+            return _estudiante.ConsultarEstudiantes();
         }
 
         // GET api/<controller>/5

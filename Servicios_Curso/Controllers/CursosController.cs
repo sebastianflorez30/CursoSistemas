@@ -20,6 +20,11 @@ namespace Servicios_Curso.Controllers
             return _curso.ConsultarTodos();
         }
         */
+        public IQueryable Get()
+        {
+            clsCurso _curso = new clsCurso();
+            return _curso.ListarTodosConProfesor();
+        }
         // GET api/<controller>/5
         public CURSo Get(int Codigo)
         {

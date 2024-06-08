@@ -45,6 +45,38 @@ namespace Servicios_Curso.Clases
                 return ex.Message;
             }
         }
+        
+        public CURSo Consultar(int Codigo)
+        {
+            //Para retornar un empleado
+            //Las instrucciones lambda, permiten que una variable tome las propiedades de un objeto al cual se refiere
+            //El método FirstOrDefault, consulta el primer elemento que cumple con las condiciones que se le apliquen 
+            //a la consulta, es el equivalente al WHERE
+            //La variable "e =>", con la expresión =>, se convierte en una expresión lambda, que permite que esa variable
+            //se vuelva un objeto de tipo empleado
+            return dbCurso.CURSoes.FirstOrDefault(c => c.Codigo == Codigo);
+        }
+        public IQueryable ListarTodosConProfesor()
+        {
+            return from PR in dbCurso.Set<PROFesor>()
+                   join C in dbCurso.Set<CURSo>()               
+                   on PR.Documento equals C.DocumentoProfesor
+                   join A in dbCurso.Set<ASIGnatura>()
+                   on C.Codigo equals A.Codigo
+                   orderby PR.Nombre, C.Nombre
+                   select new
+                   {
+                       CodigoCurso = C.Codigo,
+                       NombreCurso = C.Nombre,
+                       Descripcion = C.Descripcion,
+                       Duracion = C.Duracion,
+                       Nivel = C.Nivel,
+                       CodigoAsignatura = A.Codigo,
+                       DocumentoProfesor = PR.Documento
+                   };
+        }
+
+        //Si quiero consultar todos los empleados, no les pongo ningún criterio, y retorno una lista de empleados
         public string Eliminar()
         {
             try
@@ -64,35 +96,6 @@ namespace Servicios_Curso.Clases
                 return ex.Message;
             }
         }
-        public CURSo Consultar(int Codigo)
-        {
-            //Para retornar un empleado
-            //Las instrucciones lambda, permiten que una variable tome las propiedades de un objeto al cual se refiere
-            //El método FirstOrDefault, consulta el primer elemento que cumple con las condiciones que se le apliquen 
-            //a la consulta, es el equivalente al WHERE
-            //La variable "e =>", con la expresión =>, se convierte en una expresión lambda, que permite que esa variable
-            //se vuelva un objeto de tipo empleado
-            return dbCurso.CURSoes.FirstOrDefault(c => c.Codigo == Codigo);
-        }
-        public IQueryable ListarTodosConProfesor()
-        {
-            return from PR in Curso.Set<PROFesor>()
-                   join C in Curso.Set<CURSo>()
-                   on PR.Documento equals C.DocumentoProfesor
-                   orderby PR.Nombre, C.Nombre
-                   select new
-                   {
-                       Cod_Tipo_Prod = TP.Codigo,
-                       Tipo_Producto = TP.Nombre,
-                       Codigo = P.Codigo,
-                       Producto = P.Nombre,
-                       Descripcion = P.Descripcion,
-                       Cantidad = P.Cantidad,
-                       Valor_Unitario = P.ValorUnitario
-                   };
-        }
-
-        //Si quiero consultar todos los empleados, no les pongo ningún criterio, y retorno una lista de empleados
         public List<CURSo> ConsultarTodos()
         {
             //Para consultar un grupo de empleados, o de objetos de la base de datos, se debe retornar una lista

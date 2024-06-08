@@ -13,6 +13,13 @@ namespace Servicios_Curso.Clases
 
         public ESTUdiante Estudiante { get; set; }
 
+        public List<ESTUdiante> ConsultarEstudiantes()
+        {
+            return Curso.ESTUdiantes
+                          .OrderBy(e => e.Nombre)
+                          .ToList();
+        }
+
         public string Insertar()
         {
             try
